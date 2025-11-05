@@ -1,3 +1,9 @@
 spring:
   application:
     name: nartyBackend
+  datasource:
+    url: jdbc:mysql://localhost:3306/slonecznaDolinaBackend?createDatabaseIfNotExist=true
+    username: root
+    password: qwerty
+  jpa:
+    show-sql: true
