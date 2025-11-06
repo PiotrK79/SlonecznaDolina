@@ -5,7 +5,7 @@ function CScheduleWithInstructor() {
   const instructors = ["Piotr", "Szymon", "Adam"];
   const [currentInstructor, setCurrentInstructor] = useState("Piotr");
 
-  return (                    // <-- MUSI BYĆ RETURN!
+  return (                   
     <div>
       <h2>Wybierz instruktora</h2>
 
@@ -19,8 +19,6 @@ function CScheduleWithInstructor() {
           </option>
         ))}
       </select>
-
-      {/* Przekazujemy wybranego instruktora do tabeli */}
       <CScheduleTable instructor={currentInstructor} />
     </div>
   );
