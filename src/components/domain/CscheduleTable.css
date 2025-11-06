@@ -1,0 +1,40 @@
+.schedule-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+}
+
+.schedule-table thead {
+  background-color: #1a1a1a;
+}
+
+.hour-cell {
+  background-color: #161616;
+  font-weight: bold;
+  width: 80px;
+}
+
+.lesson-cell input {
+  width: 100%;
+  border: none;
+  text-align: center;
+  padding: 4px;
+  outline: none;
+  background: transparent;
+}
+
+.lesson-cell input:hover,
+.lesson-cell input:focus {
+  background-color: #eef;
+}
