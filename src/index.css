@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Times New Roman', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -23,14 +23,37 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  padding-top: 150px; 
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #ebebeb53;
+  min-height: 100vh; 
+  position: relative;
+  /* overflow: hidden;  */
+}
+
+body::before {
+  content: "";
+  position: absolute; /* lub absolute */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-image: url("background-image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(8px);      /* rozmycie */
+  opacity: 0.5;           /* przezroczystość (0 = niewidoczne, 1 = pełne) */
+  z-index: -1;            /* umieszcza warstwę za treścią */
 }
 
 h1 {
+  /* font-family: 'Times New Roman', Times, serif; */
   font-size: 3.2em;
   line-height: 1.1;
 }

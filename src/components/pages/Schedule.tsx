@@ -1,4 +1,4 @@
-import CScheduleWithInstructor from "../domain/CScheduleWithInstructor"
+import CScheduleWithInstructor from "../domain/schedule/CScheduleWithInstructor"
 
 function Schedule(){
 

@@ -1,0 +1,42 @@
+.topbar {
+  position: fixed;     
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+
+  padding-bottom: 10px;
+
+  background: rgba(255, 255, 255, 0.21);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.2px);
+  -webkit-backdrop-filter: blur(3.2px);
+  border: 1px solid rgba(255, 255, 255, 0.39);
+}
+
+.router-ul {
+  list-style: none;
+  display: inline-flex;
+  gap: 100px;
+  padding-bottom: 10px;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    color: rgb(42, 42, 42);
+}
+
+a.active {
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.364);
+  padding: 20px;
+}
+
+.main-header {
+    align-content: center;
+    color: black;
+}

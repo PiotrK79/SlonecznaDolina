@@ -1,20 +1,34 @@
-import { useState } from "react"
+import { useEffect, useState } from "react";
 
-type RentalComponentsProps = {
-  name: string
-  initialSold?: number
+interface Props {
+  itemName: string;
+  amount: number;
 }
 
-export default function CIncomeComponents({ name, initialSold = 0 }: RentalComponentsProps) {
-  const [sold, setSold] = useState<number>(initialSold)   // ✅ zwykłe useState zamiast persistent
-  const [delta, setDelta] = useState<string>("1")
+export default function CIncomeComponents({
+  itemName: name,
+}: Props) {
+  const items = ["Narty", "Kijki", "Buty", "Snowboard", "Lekcja", "Karnet"];
+
+  const [delta, setDelta] = useState<string>("1");
+
+  const [sold, setSold] = useState(() => {
+    const saved = localStorage.getItem("klucz")
+    return saved ? Number(saved) : 0
+  });
+
+  useEffect(() =>{
+    localStorage.setItem("klucz", String(sold))
+  }, [sold])
+
+  
 
   const addDelta = () => {
-    const n = Number(delta)
-    if (!Number.isFinite(n)) return
-    if (n < 0) return
-    setSold((s) => s + n)
-  }
+    const n = Number(delta);
+    if (!Number.isFinite(n)) return;
+    if (n < 0) return;
+    setSold((s) => s + n);
+  };
 
   return (
     <>
@@ -30,7 +44,9 @@ export default function CIncomeComponents({ name, initialSold = 0 }: RentalCompo
           placeholder="Wpisz wartość"
           value={delta}
           onChange={(e) => setDelta(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') addDelta() }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") addDelta();
+          }}
           style={{ width: 120 }}
         />
         <button onClick={addDelta} disabled={delta.trim() === ""}>
@@ -38,5 +54,5 @@ export default function CIncomeComponents({ name, initialSold = 0 }: RentalCompo
         </button>
       </div>
     </>
-  )
+  );
 }
