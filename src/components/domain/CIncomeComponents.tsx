@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react";
+import "./CIncomeComponents.css";
 
 interface Props {
   itemName: string;
   amount: number;
 }
 
-export default function CIncomeComponents({
-  itemName: name,
-}: Props) {
-  const items = ["Narty", "Kijki", "Buty", "Snowboard", "Lekcja", "Karnet"];
+export default function CIncomeComponents({ itemName: name }: Props) {
+  // const items = ["Narty", "Kijki", "Buty", "Snowboard", "Lekcja", "Karnet"];
 
   const [delta, setDelta] = useState<string>("1");
 
   const [sold, setSold] = useState(() => {
-    const saved = localStorage.getItem("klucz")
-    return saved ? Number(saved) : 0
+    const saved = localStorage.getItem("klucz");
+    return saved ? Number(saved) : 0;
   });
 
-  useEffect(() =>{
-    localStorage.setItem("klucz", String(sold))
-  }, [sold])
-
-  
+  useEffect(() => {
+    localStorage.setItem("klucz", String(sold));
+  }, [sold]);
 
   const addDelta = () => {
     const n = Number(delta);
@@ -32,10 +29,12 @@ export default function CIncomeComponents({
 
   return (
     <>
-      <h4>{name}</h4>
-      <p>Sprzedane: {sold}</p>
+      <div className="income-info">
+        <h4>{name}</h4>
+        <p>Sprzedane: {sold}</p>
+      </div>
 
-      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+      <div className="income-input">
         <input
           type="number"
           inputMode="numeric"

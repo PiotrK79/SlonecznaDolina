@@ -1,5 +1,5 @@
 .topbar {
-  position: fixed;     
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
@@ -15,28 +15,38 @@
   border: 1px solid rgba(255, 255, 255, 0.39);
 }
 
+.main-header {
+  align-content: center;
+  color: black;
+}
+
 .router-ul {
   list-style: none;
   display: inline-flex;
   gap: 100px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+  margin: 0;
+  padding: 0;
 }
 
-a{
-    color: black;
+.router-ul button {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 30px 20px;
+  transition: 0.2s;
 }
 
-a:hover{
-    color: rgb(42, 42, 42);
+.router-ul button:hover {
+  background-color: #96e5ff3d;
+  color: #000000;
+  border: none;
 }
 
-a.active {
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.364);
-  padding: 20px;
-}
-
-.main-header {
-    align-content: center;
-    color: black;
+.router-ul button.active {
+  font-weight: bold;
+  background-color: #96e5ff74;
+  outline: none;
 }
