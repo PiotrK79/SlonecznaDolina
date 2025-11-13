@@ -1,0 +1,50 @@
+.income-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.income-input{
+  display: inline-flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.income-input input {
+  width: 120px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background-color: rgba(0, 62, 148, 0.351);
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 2px 2px #7d7d7d80;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.income-input input:focus {
+  border-color: #272744;
+  box-shadow: 0 2px 2px #00000080;
+}
+
+.income-input button {
+  background-color: #0c0f35cf;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 36px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.income-input button:active {
+  transition-duration: 80ms;
+  background-color: #000000cf;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.income-input button:focus {
+  outline: none;             
+}
+

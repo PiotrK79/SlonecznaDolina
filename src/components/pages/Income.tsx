@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import CIncomeComponents from "../domain/CIncomeComponents";
+import CIncomeComponents from "../domain/income/CIncomeComponents";
 import "./Income.css";
 
 function Income() {
@@ -21,7 +21,7 @@ function Income() {
           <h2>Ośrodek narciarski</h2>
           <ul>
             <CIncomeComponents itemName="Lekcja" amount={0} />
-            <CIncomeComponents itemName="Karnet" amount={0} />
+            <CIncomeComponents itemName="Karnety" amount={0} />
           </ul>
         </div>
       </div>

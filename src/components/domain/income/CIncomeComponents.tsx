@@ -30,7 +30,7 @@ export default function CIncomeComponents({ itemName: name }: Props) {
   return (
     <>
       <div className="income-info">
-        <h4>{name}</h4>
+        <h4>{name}: </h4>
         <p>Sprzedane: {sold}</p>
       </div>
 
