@@ -4,7 +4,6 @@ function Schedule(){
 
     return(
        <div className="schedule-container">
-         <h1>Plan zajęć</h1>
          <CScheduleWithInstructor></CScheduleWithInstructor>
        </div>
         

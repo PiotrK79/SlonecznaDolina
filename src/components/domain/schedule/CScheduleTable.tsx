@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./CscheduleTable.css";
 
 interface Props {
-  instructor: string; // <- dodaliśmy
+  instructor: string;
 }
 
 function CScheduleTable({ instructor }: Props) {
@@ -33,7 +33,7 @@ function CScheduleTable({ instructor }: Props) {
 
   return (
     <div>
-      <h3>Plan instruktora: {instructor}</h3>
+      {/* <h3>Plan instruktora: {instructor}</h3> */}
       <table className="schedule-table">
         <thead>
           <tr>

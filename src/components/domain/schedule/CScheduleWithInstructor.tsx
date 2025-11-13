@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CScheduleTable from "./CScheduleTable";
+import "./CScheduleWithInstructor.css"
 
 
 
@@ -9,7 +10,8 @@ function CScheduleWithInstructor() {
 
   return (                   
     <div>
-      <h2>Wybierz instruktora</h2>
+      <div className="instructor-selection">
+      <h2>Plan instruktora:</h2>
       <select
         value={currentInstructor}
         onChange={(e) => setCurrentInstructor(e.target.value)}
@@ -20,6 +22,7 @@ function CScheduleWithInstructor() {
           </option>
         ))}
       </select>
+      </div>
       <CScheduleTable instructor={currentInstructor} />
     </div>
   );
