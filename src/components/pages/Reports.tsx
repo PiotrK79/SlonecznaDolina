@@ -84,10 +84,7 @@ export default function Reports() {
 
   return (
     <div className="reports-container">
-      {/* <h2>Raporty</h2> */}
-
-      <button onClick={() => setShowForm(true)}>Nowy raport</button>
-
+      <button className = "new-report-button" onClick={() => setShowForm(true)}>Nowy raport</button>
       {showForm && (
         <div className="new-report-modal">
           <h3>Nowy raport</h3>

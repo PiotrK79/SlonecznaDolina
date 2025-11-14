@@ -10,7 +10,6 @@ export default function CIncomeComponents({ itemName, reportId }: Props) {
   const [delta, setDelta] = useState<string>("1");
   const [sold, setSold] = useState<number>(0);
 
-  // 🔹 Wczytaj sprzedaż z aktywnego raportu
   useEffect(() => {
     const reportsJSON = localStorage.getItem("reports");
     if (!reportsJSON) return;
@@ -23,7 +22,6 @@ export default function CIncomeComponents({ itemName, reportId }: Props) {
     setSold(existing);
   }, [itemName, reportId]);
 
-  // 🔹 Aktualizuj sprzedaż w danym raporcie
   const updateSales = (value: number) => {
     setSold(value);
 

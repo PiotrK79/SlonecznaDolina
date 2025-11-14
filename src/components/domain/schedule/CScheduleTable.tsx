@@ -3,58 +3,55 @@ import "./CscheduleTable.css";
 
 interface Props {
   instructor: string;
+  reportId: string;
 }
 
-function CScheduleTable({ instructor }: Props) {
-  const days = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
+function CScheduleTable({ instructor, reportId }: Props) {
+  const days = ["Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"];
   const hours = Array.from({ length: 12 }, (_, i) => `${8 + i}:00`);
 
-  // Oddzielny klucz w localStorage dla każdego instruktora
   const [schedule, setSchedule] = useState<Record<string, string>>({});
+  const [loaded, setLoaded] = useState(false);
 
-  // Ładowanie danych przy zmianie instruktora
   useEffect(() => {
-    const saved = localStorage.getItem(`schedule_${instructor}`);
+    const saved = localStorage.getItem(`schedule_${reportId}_${instructor}`);
     setSchedule(saved ? JSON.parse(saved) : {});
-  }, [instructor]);
+    setLoaded(true);
+  }, [reportId, instructor]);
 
-  // Zapisywanie do localStorage po zmianie planu
   useEffect(() => {
-    localStorage.setItem(`schedule_${instructor}`, JSON.stringify(schedule));
-  }, [schedule, instructor]);
+    if (!loaded) return;
+    localStorage.setItem(`schedule_${reportId}_${instructor}`, JSON.stringify(schedule));
+  }, [schedule, reportId, instructor, loaded]);
 
-  // Aktualizacja konkretnej komórki
   const updateCell = (day: string, hour: string, value: string) => {
-    setSchedule((prev) => ({
+    setSchedule(prev => ({
       ...prev,
-      [`${day}-${hour}`]: value,
+      [`${day}-${hour}`]: value
     }));
   };
 
   return (
     <div>
-      {/* <h3>Plan instruktora: {instructor}</h3> */}
       <table className="schedule-table">
         <thead>
           <tr>
             <th>Godzina</th>
-            {days.map((day) => (
-              <th key={day}>{day}</th>
-            ))}
+            {days.map(day => <th key={day}>{day}</th>)}
           </tr>
         </thead>
         <tbody>
-          {hours.map((hour) => (
+          {hours.map(hour => (
             <tr key={hour}>
               <td className="hour-cell">{hour}</td>
-              {days.map((day) => {
+              {days.map(day => {
                 const key = `${day}-${hour}`;
                 return (
                   <td key={key} className="lesson-cell">
                     <input
                       type="text"
                       value={schedule[key] || ""}
-                      onChange={(e) => updateCell(day, hour, e.target.value)}
+                      onChange={e => updateCell(day, hour, e.target.value)}
                     />
                   </td>
                 );

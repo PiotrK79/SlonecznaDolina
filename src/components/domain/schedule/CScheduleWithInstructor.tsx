@@ -1,29 +1,44 @@
 import { useState } from "react";
 import CScheduleTable from "./CScheduleTable";
-import "./CScheduleWithInstructor.css"
+import "./CScheduleWithInstructor.css";
 
+interface Report {
+  id: string;
+  name: string;
+  date: string;
+}
 
+interface Props {
+  activeReport: Report | null;
+}
 
-function CScheduleWithInstructor() {
+function CScheduleWithInstructor({ activeReport }: Props) {
   const instructors = ["Piotr", "Szymon", "Adam"];
   const [currentInstructor, setCurrentInstructor] = useState("Piotr");
 
-  return (                   
-    <div>
+  if (!activeReport) return <div>Ładowanie...</div>;
+
+  return (
+    <div className="schedule-with-instructor">
       <div className="instructor-selection">
-      <h2>Plan instruktora:</h2>
-      <select
-        value={currentInstructor}
-        onChange={(e) => setCurrentInstructor(e.target.value)}
-      >
-        {instructors.map((instr) => (
-          <option key={instr} value={instr}>
-            {instr}
-          </option>
-        ))}
-      </select>
+        <h2>Plan instruktora:</h2>
+        <select
+          value={currentInstructor}
+          onChange={(e) => setCurrentInstructor(e.target.value)}
+        >
+          {instructors.map((instr) => (
+            <option key={instr} value={instr}>
+              {instr}
+            </option>
+          ))}
+        </select>
       </div>
-      <CScheduleTable instructor={currentInstructor} />
+
+      <CScheduleTable
+        key={`${activeReport.id}_${currentInstructor}`}
+        instructor={currentInstructor}
+        reportId={activeReport.id}
+      />
     </div>
   );
 }

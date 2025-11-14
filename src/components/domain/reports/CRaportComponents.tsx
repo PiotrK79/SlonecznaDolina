@@ -16,6 +16,7 @@ export default function CRaportComponents({
   return (
     <div className={`raport-card ${active ? "active" : ""}`}>
       <div className="raport-info">
+        {/* {active && <h3 className="active-tag">Aktywny</h3>} */}
         <h4>{raport.name}</h4>
         <p>Data: {raport.date}</p>
       </div>
