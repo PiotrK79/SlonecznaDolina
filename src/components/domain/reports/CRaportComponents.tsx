@@ -1,4 +1,4 @@
-// import "./CRaportComponents.css";
+import "./CRaportComponents.css";
 
 interface Props {
   raport: { id: string; name: string; date: string };
@@ -23,8 +23,8 @@ export default function CRaportComponents({
       <div className="raport-buttons">
         <button onClick={onEdit}>Edycja</button>
         <button>Szczegóły</button>
-        <button onClick={() => onDelete(raport.id)}>Usuń</button>
         <button>PDF</button>
+        <button onClick={() => onDelete(raport.id)}>Usuń</button>
       </div>
     </div>
   );

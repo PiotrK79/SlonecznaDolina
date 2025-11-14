@@ -3,63 +3,70 @@ import "./CIncomeComponents.css";
 
 interface Props {
   itemName: string;
-  amount: number;
+  reportId: string;
 }
 
-export default function CIncomeComponents({ itemName: name }: Props) {
+export default function CIncomeComponents({ itemName, reportId }: Props) {
   const [delta, setDelta] = useState<string>("1");
   const [sold, setSold] = useState<number>(0);
 
+  // 🔹 Wczytaj sprzedaż z aktywnego raportu
   useEffect(() => {
-    const activeReportId = localStorage.getItem("activeReportId");
+    const reportsJSON = localStorage.getItem("reports");
+    if (!reportsJSON) return;
 
-    if (activeReportId) {
-      const saved = localStorage.getItem(`sales_${activeReportId}_${name}`);
-      setSold(saved ? Number(saved) : 0);
-    } else {
+    const reports = JSON.parse(reportsJSON);
+    const index = reports.findIndex((r: any) => r.id === reportId);
+    if (index === -1) return;
 
-      setSold(0);
-    }
-  }, [name]);
+    const existing = reports[index].sales?.[itemName] ?? 0;
+    setSold(existing);
+  }, [itemName, reportId]);
 
-  useEffect(() => {
-    const activeReportId = localStorage.getItem("activeReportId");
-    if (activeReportId) {
-      localStorage.setItem(`sales_${activeReportId}_${name}`, String(sold));
-    }
-  }, [sold, name]);
+  // 🔹 Aktualizuj sprzedaż w danym raporcie
+  const updateSales = (value: number) => {
+    setSold(value);
+
+    const reportsJSON = localStorage.getItem("reports");
+    if (!reportsJSON) return;
+
+    const reports = JSON.parse(reportsJSON);
+    const index = reports.findIndex((r: any) => r.id === reportId);
+    if (index === -1) return;
+
+    if (!reports[index].sales) reports[index].sales = {};
+
+    reports[index].sales[itemName] = value;
+
+    localStorage.setItem("reports", JSON.stringify(reports));
+  };
 
   const addDelta = () => {
-    const n = Number(delta);
-    if (!Number.isFinite(n) || n < 0) return;
-    setSold((s) => s + n);
+    const amount = Number(delta);
+    if (!Number.isFinite(amount) || amount < 0) return;
+    updateSales(sold + amount);
   };
 
   return (
-    <>
-      <div className="income-info">
-        <h4>{name}: </h4>
-        <p>Sprzedane: {sold}</p>
-      </div>
+  <li className="income-item">
+    <div className="income-info">
+      <h4>{itemName}:</h4>
+      <p>Sprzedane: {sold}</p>
+    </div>
 
-      <div className="income-input">
-        <input
-          type="number"
-          inputMode="numeric"
-          min={0}
-          step={1}
-          placeholder="Wpisz wartość"
-          value={delta}
-          onChange={(e) => setDelta(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") addDelta();
-          }}
-          style={{ width: 120 }}
-        />
-        <button onClick={addDelta} disabled={delta.trim() === ""}>
-          Dodaj wartość
-        </button>
-      </div>
-    </>
-  );
+    <div className="income-input">
+      <input
+        type="number"
+        min={0}
+        value={delta}
+        onChange={(e) => setDelta(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && addDelta()}
+      />
+      <button onClick={addDelta} disabled={delta.trim() === ""}>
+        Dodaj wartość
+      </button>
+    </div>
+  </li>
+);
+
 }

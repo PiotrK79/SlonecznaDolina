@@ -10,7 +10,7 @@
 }
 
 
-.rental-office-components ul,
+/* .rental-office ul, */
 .ski-resort-components ul {
   list-style: none;
   margin: 0;
@@ -19,10 +19,10 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 5px;
+  gap: 0px;
 }
 
-.rental-office-components ul {
+.rental-office ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -30,7 +30,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 5px;
+  gap: 0px;
   box-shadow:inset;
 
   border-right: 2px solid rgba(255, 255, 255, 0.425);

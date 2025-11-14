@@ -84,7 +84,7 @@ export default function Reports() {
 
   return (
     <div className="reports-container">
-      <h2>Raporty</h2>
+      {/* <h2>Raporty</h2> */}
 
       <button onClick={() => setShowForm(true)}>Nowy raport</button>
 

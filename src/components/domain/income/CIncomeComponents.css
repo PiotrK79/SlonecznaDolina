@@ -1,12 +1,18 @@
-.income-info {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+.income-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
 }
 
+.income-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0px;
+}
 
-.income-input{
-  display: inline-flex;
+.income-input {
+  display: flex;
   align-items: center;
   gap: 50px;
 }
@@ -30,21 +36,20 @@
 
 .income-input button {
   background-color: #0c0f35cf;
-  color: rgb(255, 255, 255);
+  color: #fff;
   border: none;
   border-radius: 6px;
   padding: 8px 36px;
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .income-input button:active {
-  transition-duration: 80ms;
   background-color: #000000cf;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .income-input button:focus {
-  outline: none;             
+  outline: none;
 }
-
