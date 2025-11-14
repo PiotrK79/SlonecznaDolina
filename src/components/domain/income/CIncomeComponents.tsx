@@ -7,23 +7,31 @@ interface Props {
 }
 
 export default function CIncomeComponents({ itemName: name }: Props) {
-  // const items = ["Narty", "Kijki", "Buty", "Snowboard", "Lekcja", "Karnet"];
-
   const [delta, setDelta] = useState<string>("1");
-
-  const [sold, setSold] = useState(() => {
-    const saved = localStorage.getItem("klucz");
-    return saved ? Number(saved) : 0;
-  });
+  const [sold, setSold] = useState<number>(0);
 
   useEffect(() => {
-    localStorage.setItem("klucz", String(sold));
-  }, [sold]);
+    const activeReportId = localStorage.getItem("activeReportId");
+
+    if (activeReportId) {
+      const saved = localStorage.getItem(`sales_${activeReportId}_${name}`);
+      setSold(saved ? Number(saved) : 0);
+    } else {
+
+      setSold(0);
+    }
+  }, [name]);
+
+  useEffect(() => {
+    const activeReportId = localStorage.getItem("activeReportId");
+    if (activeReportId) {
+      localStorage.setItem(`sales_${activeReportId}_${name}`, String(sold));
+    }
+  }, [sold, name]);
 
   const addDelta = () => {
     const n = Number(delta);
-    if (!Number.isFinite(n)) return;
-    if (n < 0) return;
+    if (!Number.isFinite(n) || n < 0) return;
     setSold((s) => s + n);
   };
 

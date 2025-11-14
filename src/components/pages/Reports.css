@@ -1,0 +1,31 @@
+.raports-container {
+  padding: 20px;
+}
+
+.new-raport-modal {
+  background: rgba(255,255,255,0.9);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px #0002;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+.raports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 300px;
+}
+
+.raport-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  background: rgba(0,0,0,0.1);
+  padding: 5px 15px;
+  border-radius: 6px;
+}

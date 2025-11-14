@@ -31,8 +31,8 @@ export default function CHeader() {
           </li>
           <li>
             <button
-              className={location.pathname === "/pages/Raports" ? "active" : ""}
-              onClick={() => navigate("/pages/Raports")}
+              className={location.pathname === "/pages/Reports" ? "active" : ""}
+              onClick={() => navigate("/pages/Reports")}
             >
               Raporty
             </button>
