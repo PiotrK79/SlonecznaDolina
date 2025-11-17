@@ -1,4 +1,4 @@
-package com.projekt.nartyBackend.entities;
+package com.projekt.nartyBackend.Income.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

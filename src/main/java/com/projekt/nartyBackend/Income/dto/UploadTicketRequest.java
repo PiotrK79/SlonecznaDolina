@@ -1,4 +1,4 @@
-package com.projekt.nartyBackend.dto;
+package com.projekt.nartyBackend.Income.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @ToString
 public class UploadTicketRequest {
-    private int type;
+    private int equipmentId;
     private BigDecimal price;
 }

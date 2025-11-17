@@ -1,4 +1,4 @@
-package com.projekt.nartyBackend.dto;
+package com.projekt.nartyBackend.Income.dto;
 
 import lombok.*;
 
