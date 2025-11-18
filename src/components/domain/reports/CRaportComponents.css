@@ -37,6 +37,8 @@
 .raport-card.active {
   background: #51ffee36; 
   box-shadow: 0 0 5px rgba(0, 136, 255, 0.562);
+  box-shadow: 0 0 5px rgba(15, 67, 139, 0.399);
+   background-color: rgba(23, 108, 227, 0.593);
 }
 
 .active-tag {

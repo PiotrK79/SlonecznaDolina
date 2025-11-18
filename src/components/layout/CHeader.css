@@ -1,4 +1,5 @@
 .topbar {
+  font-family: 'Times New Roman', Times, serif;
   position: fixed;
   left: 0;
   right: 0;
@@ -7,12 +8,12 @@
 
   padding-bottom: 10px;
 
-  background: rgba(255, 255, 255, 0.21);
-  border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.2px);
-  -webkit-backdrop-filter: blur(3.2px);
-  border: 1px solid rgba(255, 255, 255, 0.39);
+background: rgba(255, 255, 255, 0.24);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.2px);
+-webkit-backdrop-filter: blur(3.2px);
+border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .main-header {
@@ -37,6 +38,7 @@
   cursor: pointer;
   padding: 30px 20px;
   transition: 0.2s;
+  font-size: 1.1rem;
 }
 
 .router-ul button:hover {
@@ -47,7 +49,8 @@
 
 .router-ul button.active {
   font-weight: bold;
-  background-color: #96e5ff74;
+  /* background-color: #96e5ff74; */
+  background-color: rgba(0, 103, 246, 0.316);
   outline: none;
    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       transform: translateY(5px);

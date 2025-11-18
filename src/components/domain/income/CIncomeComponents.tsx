@@ -41,7 +41,7 @@ export default function CIncomeComponents({ itemName, reportId }: Props) {
 
   const addDelta = () => {
     const amount = Number(delta);
-    if (!Number.isFinite(amount) || amount < 0) return;
+    // if (!Number.isFinite(amount) || amount < 0) return;
     updateSales(sold + amount);
   };
 

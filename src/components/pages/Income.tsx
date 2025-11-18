@@ -45,12 +45,22 @@ function Income() {
       </div>
 
       <div className="ski-resort-components">
-        <h2>Ośrodek narciarski</h2>
+        <h2>Karnety</h2>
         <ul>
-          <CIncomeComponents reportId={activeReport.id} itemName="Lekcja" />
-          <CIncomeComponents reportId={activeReport.id} itemName="Karnety" />
+          <CIncomeComponents reportId={activeReport.id} itemName="Karnet 1h" />
+          <CIncomeComponents reportId={activeReport.id} itemName="Karnet 2h" />
+          <CIncomeComponents reportId={activeReport.id} itemName="Karnet 5h" />
+          <CIncomeComponents reportId={activeReport.id} itemName="Karnet 24h" />
         </ul>
       </div>
+      
+      <div className="ski-school-components">
+        <h2>Szkółka narciarska</h2>
+        <ul>
+          <CIncomeComponents reportId={activeReport.id} itemName="Lekcja" />
+        </ul>
+      </div>
+
     </div>
   );
 }

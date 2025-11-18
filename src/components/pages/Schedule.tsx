@@ -26,7 +26,7 @@ function Schedule() {
   }, []);
 
   if (!activeReport) {
-    return <h2>Najpierw stwórz raport w zakładce Raporty.</h2>;
+    return <h2>Najpierw wybierz lub stwórz raport w zakładce Raporty.</h2>;
   }
 
   return (

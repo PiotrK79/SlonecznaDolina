@@ -1,0 +1,55 @@
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+}
+
+.setting-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0px;
+}
+
+.setting-input{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.setting-input input{
+     width: 120px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background-color: rgba(0, 62, 148, 0.351);
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 2px 2px #7d7d7d80;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.setting-input input:focus {
+  border-color: #272744;
+  box-shadow: 0 2px 2px #00000080;
+}
+
+.setting-input button {
+  background-color: #0c0f35cf;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 36px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.setting-input button:active {
+  background-color: #000000cf;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.setting-input button:focus {
+  outline: none;
+}
