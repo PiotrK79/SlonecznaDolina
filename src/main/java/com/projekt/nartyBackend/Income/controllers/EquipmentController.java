@@ -1,5 +1,7 @@
 package com.projekt.nartyBackend.Income.controllers;
 
+import com.projekt.nartyBackend.Calendar.dtos.EventRequest;
+import com.projekt.nartyBackend.Calendar.entities.Event;
 import com.projekt.nartyBackend.Income.dto.UploadEquipmentRequest;
 import com.projekt.nartyBackend.Income.entities.Equipment;
 import com.projekt.nartyBackend.Income.mappers.EquipmentMapper;
@@ -45,5 +47,28 @@ public class EquipmentController {
 
         }
         return ResponseEntity.ok(equipment);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Event> updateEvent(@RequestBody  UploadEquipmentRequest request,
+                                             @PathVariable Long id,
+                                             UriComponentsBuilder uriBulder) {
+        var eq = equipmentRepository.findById(id).orElse(null);
+        if(eq!=null) {
+            equipmentMapper.update(request,eq);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.accepted().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
+        var evO = equipmentRepository.findById(id).orElse(null);
+        if(evO==null) {
+            return ResponseEntity.notFound().build();
+        }
+        equipmentRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
