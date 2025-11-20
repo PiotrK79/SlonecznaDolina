@@ -1,19 +1,26 @@
 import { useState, useEffect } from "react";
+import "./CInstructorSettingComponent.css";
 
 function CInstructorSettingComponent() {
   const [instructors, setInstructors] = useState<string[]>([]);
   const [newInstructor, setNewInstructor] = useState("");
 
   useEffect(() => {
+    console.log("[InstructorSettings] MOUNTED");
     const saved = localStorage.getItem("instructors");
+    console.log("[InstructorSettings] Loaded from LS:", saved);
     if (saved) {
       setInstructors(JSON.parse(saved));
     }
   }, []);
 
-  useEffect(() => {
+useEffect(() => {
+  if (instructors !== null && instructors.length > 0) {
+    console.log("[InstructorSettings] Saving:", instructors);
     localStorage.setItem("instructors", JSON.stringify(instructors));
-  }, [instructors]);
+  }
+}, [instructors]);
+
 
   const addInstructor = () => {
     const name = newInstructor.trim();
@@ -47,7 +54,7 @@ function CInstructorSettingComponent() {
               className="remove-button"
               onClick={() => removeInstructor(inst)}
             >
-                Usuń
+              Usuń
             </button>
           </li>
         ))}
