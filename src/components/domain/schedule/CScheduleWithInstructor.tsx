@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CScheduleTable from "./CScheduleTable";
 import "./CScheduleWithInstructor.css";
 
@@ -13,8 +13,25 @@ interface Props {
 }
 
 function CScheduleWithInstructor({ activeReport }: Props) {
-  const instructors = ["Piotr", "Szymon", "Adam"];
-  const [currentInstructor, setCurrentInstructor] = useState("Piotr");
+  const [instructors, setInstructors] = useState<string[]>([]);
+  const [currentInstructor, setCurrentInstructor] = useState<string>("");
+
+  useEffect(() => {
+    console.log("[Schedule] Loading instructors from LS...");
+
+    const saved = localStorage.getItem("instructors");
+    const list = saved ? JSON.parse(saved) : [];
+
+    console.log("[Schedule] Loaded instructors:", list);
+
+    setInstructors(list);
+
+    if (list.length > 0) {
+      setCurrentInstructor(list[0]);
+    } else {
+      setCurrentInstructor("");
+    }
+  }, []);
 
   if (!activeReport) return <div>Ładowanie...</div>;
 
@@ -22,23 +39,30 @@ function CScheduleWithInstructor({ activeReport }: Props) {
     <div className="schedule-with-instructor">
       <div className="instructor-selection">
         <h2>Plan instruktora:</h2>
-        <select
-          value={currentInstructor}
-          onChange={(e) => setCurrentInstructor(e.target.value)}
-        >
-          {instructors.map((instr) => (
-            <option key={instr} value={instr}>
-              {instr}
-            </option>
-          ))}
-        </select>
+
+        {instructors.length === 0 ? (
+          <p style={{ color: "red" }}>Brak instruktorów — dodaj ich w ustawieniach.</p>
+        ) : (
+          <select
+            value={currentInstructor}
+            onChange={(e) => setCurrentInstructor(e.target.value)}
+          >
+            {instructors.map((instr) => (
+              <option key={instr} value={instr}>
+                {instr}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
 
-      <CScheduleTable
-        key={`${activeReport.id}_${currentInstructor}`}
-        instructor={currentInstructor}
-        reportId={activeReport.id}
-      />
+      {currentInstructor && (
+        <CScheduleTable
+          key={`${activeReport.id}_${currentInstructor}`}
+          instructor={currentInstructor}
+          reportId={activeReport.id}
+        />
+      )}
     </div>
   );
 }
