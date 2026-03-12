@@ -54,8 +54,12 @@ public class EquipmentController {
                                              @PathVariable Long id,
                                              UriComponentsBuilder uriBulder) {
         var eq = equipmentRepository.findById(id).orElse(null);
+        System.out.println(request.getPrice()+" " + request.getName()+"  "+id);
+        System.out.println(eq.toString());
         if(eq!=null) {
+            System.out.println("NN");
             equipmentMapper.update(request,eq);
+            equipmentRepository.save(eq);
         }else{
             return ResponseEntity.notFound().build();
         }

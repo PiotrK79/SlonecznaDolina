@@ -4,14 +4,14 @@ import com.projekt.nartyBackend.Calendar.dtos.EventRequest;
 import com.projekt.nartyBackend.Calendar.entities.Event;
 import com.projekt.nartyBackend.Calendar.mappers.EventMapper;
 import com.projekt.nartyBackend.Calendar.repositories.EventRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/event")
@@ -21,7 +21,7 @@ public class EventController {
     private final EventMapper eventMapper;
 
     @PostMapping
-    public ResponseEntity<Event> createEvent(@RequestBody EventRequest request,
+    public ResponseEntity<Event> createEvent(@Valid @RequestBody EventRequest request,
                                              UriComponentsBuilder uriBulder) {
         Event ev = eventMapper.toEntity(request);
         System.out.println(ev.toString());
@@ -30,7 +30,24 @@ public class EventController {
         return ResponseEntity.created(uri).body(ev);
     }
 
-    @GetMapping
+    @GetMapping()
+    public ResponseEntity<List<Event>> getAllEvents(@RequestParam(required = false) Long id) {
+        List<Event> events;
+        if(id == null) {
+            events = eventRepository.findAll();
+        }else {
+            Optional<Event> ev = eventRepository.findById(id);
+            if(ev.isPresent()) {
+                events = List.of(ev.get());
+            }else {
+                events = Collections.emptyList();
+            }
+        }
+
+        return ResponseEntity.ok(events);
+    }
+
+    @GetMapping("/id")
     public ResponseEntity<List<Event>> getEvents(@RequestParam(required = false) Long id) {
         List<Event> events;
         if(id == null) {
