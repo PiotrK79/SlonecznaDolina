@@ -7,3 +7,7 @@ spring:
     password: qwerty
   jpa:
     show-sql: true
+  jwt:
+    secret: ${JWT_SECRET}
+    accessTokenValiditySeconds: 900
+    refreshTokenValiditySeconds: 604800
