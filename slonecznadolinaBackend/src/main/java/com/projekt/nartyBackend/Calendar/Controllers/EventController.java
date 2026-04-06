@@ -8,6 +8,7 @@ import com.projekt.nartyBackend.Calendar.repositories.EventRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,6 +24,7 @@ public class EventController {
     private final EventService eventService;
     private final EventMapper eventMapper;
 
+    @PreAuthorize("hasAnyRole('ADMIN','INSTRUCTOR')")
     @PostMapping
     public ResponseEntity<Event> createEvent(@Valid @RequestBody EventRequest request,
                                              UriComponentsBuilder uriBulder) {
