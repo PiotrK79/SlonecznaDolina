@@ -1,6 +1,7 @@
 package com.projekt.nartyBackend.Auth.Controllers;
 
 import com.projekt.nartyBackend.Auth.Entities.Role;
+import com.projekt.nartyBackend.Auth.Entities.User;
 import com.projekt.nartyBackend.Auth.Mappers.UserMapper;
 import com.projekt.nartyBackend.Auth.Repositories.UserRepository;
 import com.projekt.nartyBackend.Auth.Services.JwtService;
@@ -13,12 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -58,5 +56,31 @@ public class AuthController {
         var accessToken = jwtService.generateAccessToken(user);
 
         return ResponseEntity.ok(new JwtResponse(accessToken.toString()));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtResponse> refresh(@CookieValue(value = "refreshToken") String refreshToken){
+        var jwt = jwtService.parseToken(refreshToken);
+        if(jwt == null || jwt.isExpired()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        var user = userRepository.findById(jwt.getId()).orElseThrow();
+        var accessToken = jwtService.generateAccessToken(user);
+
+        return ResponseEntity.ok(new JwtResponse(accessToken.toString()));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> me(){
+        var authentication =  SecurityContextHolder.getContext().getAuthentication();
+        var userId = (Long) authentication.getPrincipal();
+
+        var user = userRepository.findById(userId).orElse(null);
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(user);
     }
 }
