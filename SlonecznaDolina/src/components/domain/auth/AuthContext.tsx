@@ -7,7 +7,7 @@ interface DecodedToken {
   iat: number;
   sub: string;
   email: string;
-  roles: string[];
+  role: string;
 }
 
 interface AuthContextType {
@@ -26,11 +26,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [roles, setRoles] = useState<string[]>([]);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (accessToken) {
       try {
         const decoded = jwtDecode<DecodedToken>(accessToken);
-        setRoles(decoded.roles);
+        console.log('Decoded token:', decoded);
+        console.log('Role from token:', decoded.role);
+        setRoles([decoded.role]);
       } catch (error) {
         console.error('Error decoding access token:', error);
       }
