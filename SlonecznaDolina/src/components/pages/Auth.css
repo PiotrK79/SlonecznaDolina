@@ -1,0 +1,80 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding: 20px;
+}
+
+.auth-form {
+  background: rgba(255, 255, 255, 0.24);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.2px);
+  -webkit-backdrop-filter: blur(3.2px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  color: black;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 103, 246, 0.5);
+  border: 1px solid rgba(0, 103, 246, 0.6);
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.2s;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.auth-button:hover {
+  background: rgba(0, 103, 246, 0.7);
+}
+
+.toggle-button {
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.message {
+  margin-top: 15px;
+  text-align: center;
+  color: red;
+}
