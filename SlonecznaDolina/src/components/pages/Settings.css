@@ -1,0 +1,15 @@
+.settings-menu {
+  margin-top: 20px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.settings-menu h2 {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.components-section {
+  border-right: 2px solid rgba(255, 255, 255, 0.425);
+  margin-right: 30px;
+}
